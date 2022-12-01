@@ -4,14 +4,14 @@ import subprocess
 import os
 import textwrap
 
-session_token = os.environ["AOC_SESSION"]
+session_token = os.environ.get("AOC_SESSION")
 
 
 if __name__ == '__main__':
     cur_day = int(datetime.datetime.now().strftime("%d"))
     if cur_day <= 25:
         input_file = f'inputs/day_{cur_day}'
-        solution_file = f'solutions/day_{cur_day}.py'
+        solution_file = f'python/solutions/day_{cur_day}.py'
 
         def get_input():
             if not os.path.exists(input_file):
@@ -37,11 +37,11 @@ if __name__ == '__main__':
 
         def append_part2():
             if os.path.exists(solution_file):
-                with open(solution_file, 'a+') as f:
-                    print(f.read())
-                    if 'def part2():' in f.read():
+                with open(solution_file) as f:
+                    if 'part2' in f.read():
                         return
 
+                with open(solution_file, 'a+') as f:
                     f.write(textwrap.dedent(
                         f"""\
                         def part2():
