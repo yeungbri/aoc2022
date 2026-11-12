@@ -1,2 +1,5 @@
 **/inputs/
 .env
+
+# Generated build directories at every level.
+build/
